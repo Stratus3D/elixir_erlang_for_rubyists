@@ -4,7 +4,8 @@ defmodule ChainControllerTest do
   test "should loop the given number of times (two in this case)" do
     # Spawn controller process
     msg = :test
-    controller = spawn(ChainController, :start, [2, msg, self])
+    controller = spawn(ChainController, :start, [2, msg])
+    send controller, {:start, self}
 
     # Start loop
     send controller, :start
