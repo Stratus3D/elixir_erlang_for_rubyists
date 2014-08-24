@@ -5,7 +5,6 @@ defmodule PlayerTest do
     player = spawn_link(Player, :start, [0.8])
     send player, {:service, self}
     assert_receive {:shot, {:ball, 0.5}, ^player}
-    send ping, {:pong, self}
-    assert_receive {:ping, ^player}
+    send player, {:shot, {:ball, 0.4}, self}
   end
 end
