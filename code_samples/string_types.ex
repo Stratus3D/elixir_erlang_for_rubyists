@@ -2,13 +2,6 @@
 "string" # string
 'char list' # char list
 
-# Multi-line strings
-"""
-multi-line
-string literal
-"""
-#=> "multi-line\nstring literal\n"
-
 # Strings are all encoded in UTF-8:
 "José" #=> "José"
 
