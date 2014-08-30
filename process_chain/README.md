@@ -16,6 +16,10 @@ Then start a loop in the iex session:
     > message = :test # The messsage to send
     > ProcessChain.start(processes, loops, message)
 
+`start_timed` does the same thing but times to looping function:
+
+    > ProcessChain.start_timed(processes, loops, message)
+
 You should see something like this printed out after you run the start function:
 
     Sending message `test`!
