@@ -4,7 +4,7 @@ defmodule ChainController do
     case timed do
       true ->
         {microseconds, :ok} = :timer.tc(__MODULE__, :wait, [loops, message])
-        IO.puts "#{loops} loops completed in #{microseconds / 1000000} seconds"
+        IO.puts "#{loops} loops completed in #{microseconds / 1_000_000} seconds"
       false ->
         wait(loops, message)
     end
