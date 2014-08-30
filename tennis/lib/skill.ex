@@ -6,9 +6,7 @@ defmodule Skill do
 
   def calculate_return(skill, spin) do
     seed
-    rand = randomness
-    #IO.puts "Randomness #{rand}"
-    case skill + (rand - spin) do
+    case skill + (randomness - spin) do
       num when num >= 0 and num <= 1 ->
         Float.round(num, 3)
       num when num > 1 ->
