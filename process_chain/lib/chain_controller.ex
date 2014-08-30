@@ -1,14 +1,20 @@
 defmodule ChainController do
-  def start(loops, message) do
+  def start(loops, message, timed) do
     # Wait for the start message to be received
-    wait(loops, message)
+    case timed do
+      true ->
+        {microseconds, :ok} = :timer.tc(__MODULE__, :wait, [loops, message])
+        IO.puts "#{loops} loops completed in #{microseconds / 1000000} seconds"
+      false ->
+        wait(loops, message)
+    end
   end
 
   def wait(loops, message) do
     receive do
       {:start, first_link} ->
         # Start the first loop
-        IO.puts "Sending message `#{message}`!"
+        IO.puts "Sending message `#{inspect message}`!"
         send first_link, message
         loop(loops-1, message, first_link)
     end
@@ -16,7 +22,7 @@ defmodule ChainController do
 
   def loop(0, message, first_link) do
     send first_link, :shutdown
-    IO.puts "Got message `#{message}`!"
+    IO.puts "Got message `#{inspect message}`!"
   end
 
   def loop(loops, message, first_link) do

@@ -1,6 +1,15 @@
 defmodule ProcessChain do
+
+  def start_timed(processes, loops, message) do
+    start(processes, loops, message, true)
+  end
+
   def start(processes, loops, message) do
-    controller = spawn_link(ChainController, :start, [loops, message])
+    start(processes, loops, message, false)
+  end
+
+  def start(processes, loops, message, timed) do
+    controller = spawn_link(ChainController, :start, [loops, message, timed])
     first_pid = create_loop(processes, controller)
     send controller, {:start, first_pid}
     :ok
