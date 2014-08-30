@@ -9,7 +9,7 @@ Start up an iex session:
 
     iex -S mix
 
-Then start a loop in the iex session:
+Then start the Ping and Pong processes in the iex session:
 
     > PingPong.start
 
