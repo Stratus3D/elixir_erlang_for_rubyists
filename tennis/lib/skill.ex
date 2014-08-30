@@ -1,19 +1,23 @@
 defmodule Skill do
   def seed() do
-    {s1, s2, s3} = :erlang.time()
-    :random.seed({s1, s3, s2})
+    {s1, s2, s3} = :os.timestamp()
+    :random.seed({s1, s2, s3})
   end
 
-  def can_return_ball?(skill, spin) do
-    (skill - (spin/2 + :random.uniform/1.5)) > 0
-  end
-
-  def calculate_ball_spin(skill, spin) do
-    case skill - (spin/6 + :random.uniform/3) do
-      num when num >= 0 ->
-        num
+  def calculate_return(skill, spin) do
+    seed
+    #((skill + randomness) - spin/2) > 0
+    case skill + (randomness - spin) do
+      num when num >= 0 and num <= 1 ->
+        Float.round(num, 3)
+      num when num > 1 ->
+        1
       num when num < 0 ->
         0
     end
+  end
+
+  def randomness do
+    :random.uniform - 0.3
   end
 end
