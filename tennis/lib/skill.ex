@@ -6,8 +6,9 @@ defmodule Skill do
 
   def calculate_return(skill, spin) do
     seed
-    #((skill + randomness) - spin/2) > 0
-    case skill + (randomness - spin) do
+    rand = randomness
+    #IO.puts "Randomness #{rand}"
+    case skill + (rand - spin) do
       num when num >= 0 and num <= 1 ->
         Float.round(num, 3)
       num when num > 1 ->
@@ -18,6 +19,6 @@ defmodule Skill do
   end
 
   def randomness do
-    :random.uniform - 0.3
+    (:random.uniform - 0.4) * 1.7
   end
 end
