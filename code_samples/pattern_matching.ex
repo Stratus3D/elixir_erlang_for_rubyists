@@ -6,7 +6,7 @@
 
 # Atoms can be used in pattern matching
 {:ok, foo} = {:ok, "foo bar baz"}
-foo #=> 2
+foo #=> "foo bar baz"
 
 {:ok, foo} = {:error, :crashed}
 #=> ** (MatchError) no match of right hand side value: {:error, :crashed}
