@@ -4,7 +4,7 @@ defmodule ProcessChain.Mixfile do
   def project do
     [app: :process_chain,
      version: "0.0.1",
-     elixir: "~> 0.15.2-dev",
+     elixir: "~> 1.0.1",
      deps: deps]
   end
 
