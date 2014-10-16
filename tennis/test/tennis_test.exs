@@ -8,7 +8,7 @@ defmodule TennisTest do
   end
 
   test "[practice/0] should return the pid of the player" do
-    player = Tennis.start(0.9, 0.8)
+    player = Tennis.practice
     true = is_pid(player)
   end
 end
