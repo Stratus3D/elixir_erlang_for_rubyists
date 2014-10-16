@@ -1,9 +1,5 @@
 defmodule Player do
-  def start(skill, name) when skill >= 0 and skill <=1 do
-    loop(skill, name)
-  end
-
-  def loop(skill, name) do
+  def loop(skill, name) when skill >= 0 and skill <=1 do
     receive do
       {:service, opponent} ->
         Process.send_after opponent, {:shot, {:ball, skill}, self, name}, 500

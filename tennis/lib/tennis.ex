@@ -6,8 +6,8 @@ defmodule Tennis do
   spawn two players, and gives one the ball to start the match
   """
   def start(skill1, skill2) do
-    player1 = spawn_link(Player, :start, [skill1, "Player 1"])
-    player2 = spawn_link(Player, :start, [skill2, "Player 2"])
+    player1 = spawn_link(Player, :loop, [skill1, "Player 1"])
+    player2 = spawn_link(Player, :loop, [skill2, "Player 2"])
     send player1, {:service, player2}
     {player1, player2}
   end
@@ -15,7 +15,7 @@ defmodule Tennis do
   @doc """
   """
   def practice do
-    player = spawn_link(Player, :start, [0.7, "Player"])
+    player = spawn_link(Player, :loop, [0.7, "Player"])
     shot = {:shot, {:ball, 0.1}, self, "Coach"}
     send player, shot
     send player, shot
