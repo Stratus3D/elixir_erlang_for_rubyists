@@ -1,8 +1,4 @@
 defmodule ChainLink do
-  def start(next_pid) do
-    loop(next_pid)
-  end
-
   def loop(next_pid) do
     receive do
       :shutdown ->

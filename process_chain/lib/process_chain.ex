@@ -20,7 +20,7 @@ defmodule ProcessChain do
   end
 
   def create_loop(processes, previous_pid) do
-    pid = spawn_link(ChainLink, :start, [previous_pid])
+    pid = spawn_link(ChainLink, :loop, [previous_pid])
     create_loop(processes - 1, pid)
   end
 end
